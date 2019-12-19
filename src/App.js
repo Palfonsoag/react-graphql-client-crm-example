@@ -4,7 +4,7 @@ import ApolloClient, { InMemoryCache } from "apollo-boost";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from "./components/common/Header";
-import Contacts from "./components/Clients";
+import Clients from "./components/Clients";
 import EditClient from "./components/EditClient";
 import NewClient from "./components/NewClient";
 
@@ -27,7 +27,7 @@ function App() {
           <Header />
           <div className="container">
             <Switch>
-              <Route exact path="/" component={Contacts} />
+              <Route exact path="/" component={Clients} />
               <Route exact path="/client/edit/:id" component={EditClient} />
               <Route exact path="/client/new" component={NewClient} />
             </Switch>
