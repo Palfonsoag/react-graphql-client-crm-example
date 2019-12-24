@@ -6,15 +6,40 @@ import { DELETE_CLIENT_MUTATION } from "../mutations";
 import Pagination from "./common/Pagination";
 class Clients extends Component {
   state = {
-    pagination: {
+    pager: {
       offset: 0,
-      page: 2
-    }
+      current: 1
+    },
+    limit: 5
+  };
+
+  previousPage = () => {
+    const { limit, pager } = this.state;
+    this.setState({
+      pager: {
+        offset: pager.offset - limit,
+        current: pager.current - 1
+      }
+    });
+  };
+  nextPage = () => {
+    const { limit, pager } = this.state;
+    this.setState({
+      pager: {
+        offset: pager.offset + limit,
+        current: pager.current + 1
+      }
+    });
   };
 
   render() {
+    const { limit, pager } = this.state;
     return (
-      <Query query={GET_CLIENTS_QUERY} pollInterval={1000}>
+      <Query
+        query={GET_CLIENTS_QUERY}
+        pollInterval={1000}
+        variables={{ limit, offset: pager.offset }}
+      >
         {({ loading, error, data, startPolling, stopPolling }) => {
           if (loading) return "Loading...";
           if (error) return `Error: ${error.message}`;
@@ -60,7 +85,13 @@ class Clients extends Component {
                   </li>
                 ))}
               </ul>
-              <Pagination current={this.state.pagination.page} />
+              <Pagination
+                current={pager.current}
+                totalClients={data.totalClients}
+                limit={limit}
+                previousPage={this.previousPage}
+                nextPage={this.nextPage}
+              />
             </React.Fragment>
           );
         }}
