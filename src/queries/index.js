@@ -13,7 +13,7 @@ export const GET_CLIENTS_QUERY = gql`
 `;
 
 export const GET_CLIENT_QUERY = gql`
-  query getClientInfo($id: ID) {
+  query getClient($id: ID!) {
     getClient(id: $id) {
       id
       name
