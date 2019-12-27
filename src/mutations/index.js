@@ -31,3 +31,14 @@ export const DELETE_CLIENT_MUTATION = gql`
     deleteClient(id: $id)
   }
 `;
+
+export const NEW_PRODUCT = gql`
+  mutation createProduct($input: ProductInput) {
+    createProduct(input: $input) {
+      id
+      name
+      price
+      stock
+    }
+  }
+`;
