@@ -11,19 +11,22 @@ const Header = () => (
         className="navbar-toggler"
         type="button"
         data-toggle="collapse"
-        data-target="#navegacion"
-        aria-controls="navegacion"
+        data-target="#navigation"
+        aria-controls="navigation"
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse" id="navegacion">
+      <div className="collapse navbar-collapse" id="navigation">
         <ul className="navbar-nav ml-auto text-right">
           <li className="nav-item active">
-            <Link to="/client/new" className="btn btn-success">
+            <Link to="/client/new" className="btn btn-success mr-2">
               New Client
+            </Link>
+            <Link to="/product/new" className="btn btn-success">
+              New Product
             </Link>
           </li>
         </ul>
