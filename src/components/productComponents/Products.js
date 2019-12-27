@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Query } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import { Link } from "react-router-dom";
 import { GET_PRODUCTS_QUERY } from "../../queries";
+import { DELETE_PRODUCT_MUTATION } from "../../mutations";
+
 class Products extends Component {
   state = {};
 
@@ -35,9 +37,29 @@ class Products extends Component {
                         <td>{price}</td>
                         <td>{stock}</td>
                         <td>
-                          <button type="button" className="btn btn-danger">
-                            &times; Delete
-                          </button>
+                          <Mutation mutation={DELETE_PRODUCT_MUTATION}>
+                            {deleteClientMutation => {
+                              return (
+                                <button
+                                  onClick={() => {
+                                    if (
+                                      window.confirm(
+                                        "Do you want to delete this product?"
+                                      )
+                                    ) {
+                                      deleteClientMutation({
+                                        variables: { id }
+                                      });
+                                    }
+                                  }}
+                                  type="button"
+                                  className="btn btn-danger"
+                                >
+                                  &times; Delete
+                                </button>
+                              );
+                            }}
+                          </Mutation>
                         </td>
                         <td>
                           <Link
