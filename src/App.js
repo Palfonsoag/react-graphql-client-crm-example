@@ -30,11 +30,11 @@ function App() {
           <Header />
           <div className="container">
             <Switch>
-              <Route exact path="/" component={Clients} />
+              <Route exact path="/client" component={Clients} />
               <Route exact path="/client/edit/:id" component={EditClient} />
               <Route exact path="/client/new" component={NewClient} />
-              <Route exact path="/product/new" component={NewProduct} />
               <Route exact path="/product" component={Products} />
+              <Route exact path="/product/new" component={NewProduct} />
               <Route exact path="/product/edit/:id" component={EditProduct} />
             </Switch>
           </div>

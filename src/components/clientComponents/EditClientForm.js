@@ -38,7 +38,7 @@ class EditClientForm extends Component {
         mutation={EDIT_CLIENT_MUTATION}
         onCompleted={() =>
           this.props.refetch().then(() => {
-            this.props.history.push("/");
+            this.props.history.push("/client");
           })
         }
       >
