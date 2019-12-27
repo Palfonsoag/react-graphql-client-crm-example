@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import { GET_CLIENTS_QUERY } from "../../queries";
 import { DELETE_CLIENT_MUTATION } from "../../mutations";
 import Pagination from "../common/Pagination";
+import SuccessAlert from "../common/SuccessAlert";
+
 class Clients extends Component {
   state = {
+    alert: { show: false, message: "" },
     pager: {
       offset: 0,
       current: 1
@@ -33,7 +36,16 @@ class Clients extends Component {
   };
 
   render() {
-    const { limit, pager } = this.state;
+    const {
+      limit,
+      pager,
+      alert: { show, message }
+    } = this.state;
+    const displayAlert = show ? (
+      <SuccessAlert message={message} />
+    ) : (
+      <React.Fragment />
+    );
     return (
       <Query
         query={GET_CLIENTS_QUERY}
@@ -46,6 +58,7 @@ class Clients extends Component {
           return (
             <React.Fragment>
               <h2 className="text-center">Client's List</h2>
+              {displayAlert}
               <ul className="list-group mt-4">
                 {data.getClients.map(client => (
                   <li key={client.id} className="list-group-item">
@@ -54,7 +67,26 @@ class Clients extends Component {
                         {client.name} {client.lastName} - {client.company}
                       </div>
                       <div className="col-md-4 d-flex justify-content-end">
-                        <Mutation mutation={DELETE_CLIENT_MUTATION}>
+                        <Mutation
+                          mutation={DELETE_CLIENT_MUTATION}
+                          onCompleted={data => {
+                            this.setState(
+                              {
+                                alert: {
+                                  show: true,
+                                  message: data.deleteClient
+                                }
+                              },
+                              () => {
+                                setTimeout(() => {
+                                  this.setState({
+                                    alert: { show: false, message: "" }
+                                  });
+                                }, 4000);
+                              }
+                            );
+                          }}
+                        >
                           {eraseClient => (
                             <button
                               type="button"
@@ -87,7 +119,7 @@ class Clients extends Component {
               </ul>
               <Pagination
                 current={pager.current}
-                totalClients={data.totalClients}
+                totalItems={data.totalClients}
                 limit={limit}
                 previousPage={this.previousPage}
                 nextPage={this.nextPage}
