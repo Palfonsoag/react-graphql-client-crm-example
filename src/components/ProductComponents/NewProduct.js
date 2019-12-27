@@ -2,8 +2,14 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { NEW_PRODUCT } from "../../mutations";
 
+const initialState = {
+  productName: "",
+  price: "",
+  stock: ""
+};
+
 class NewProduct extends Component {
-  state = { productName: "", price: "", stock: "" };
+  state = { ...initialState };
 
   updateState = e => {
     const { name, value } = e.target;
@@ -19,10 +25,15 @@ class NewProduct extends Component {
     return disabledButton;
   };
 
+  clearState = () => {
+    this.setState({ ...initialState });
+  };
+
   addNewProduct = (e, saveNewProduct) => {
     e.preventDefault();
     saveNewProduct().then(data => {
-      console.log(data);
+      this.clearState();
+      this.props.history.push("/product");
     });
   };
 
