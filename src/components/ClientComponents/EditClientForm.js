@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { withRouter } from "react-router-dom";
-import { EDIT_CLIENT_MUTATION } from "../mutations";
+import { EDIT_CLIENT_MUTATION } from "../../mutations";
 
 class EditClientForm extends Component {
   //console.log('ssssssssssss',this.props)

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
-import { GET_CLIENT_QUERY } from "../queries";
+import { GET_CLIENT_QUERY } from "../../queries";
 import EditClientForm from "./EditClientForm";
 
 export default class EditClient extends Component {

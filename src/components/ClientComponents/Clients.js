@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Query, Mutation } from "react-apollo";
 import { Link } from "react-router-dom";
-import { GET_CLIENTS_QUERY } from "../queries";
-import { DELETE_CLIENT_MUTATION } from "../mutations";
-import Pagination from "./common/Pagination";
+import { GET_CLIENTS_QUERY } from "../../queries";
+import { DELETE_CLIENT_MUTATION } from "../../mutations";
+import Pagination from "../common/Pagination";
 class Clients extends Component {
   state = {
     pager: {
