@@ -5,6 +5,7 @@ import { GET_PRODUCTS_QUERY } from "../../queries";
 import { DELETE_PRODUCT_MUTATION } from "../../mutations";
 import SuccessAlert from "../common/SuccessAlert";
 import Pagination from "../common/Pagination";
+import Loader from "../common/Loader";
 
 class Products extends Component {
   state = {
@@ -57,7 +58,7 @@ class Products extends Component {
           variables={{ limit, offset: offset }}
         >
           {({ loading, error, data, startPolling, stopPolling }) => {
-            if (loading) return "Loading...";
+            if (loading) return <Loader />;
             if (error) return `Error: ${error.message}`;
             return (
               <React.Fragment>

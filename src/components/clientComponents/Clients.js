@@ -5,6 +5,7 @@ import { GET_CLIENTS_QUERY } from "../../queries";
 import { DELETE_CLIENT_MUTATION } from "../../mutations";
 import Pagination from "../common/Pagination";
 import SuccessAlert from "../common/SuccessAlert";
+import Loader from "../common/Loader";
 
 class Clients extends Component {
   state = {
@@ -53,7 +54,7 @@ class Clients extends Component {
         variables={{ limit, offset: pager.offset }}
       >
         {({ loading, error, data, startPolling, stopPolling }) => {
-          if (loading) return "Loading...";
+          if (loading) return <Loader />;
           if (error) return `Error: ${error.message}`;
           return (
             <React.Fragment>
@@ -67,11 +68,11 @@ class Clients extends Component {
                         {client.name} {client.lastName} - {client.company}
                       </div>
                       <div className="col-md-4 d-flex justify-content-end">
-                      <Link
+                        <Link
                           to={`/order/new/${client.id}`}
                           className="btn btn-warning d-block d-md-inline-block mr-2"
                         >
-                         &#43; New Order
+                          &#43; New Order
                         </Link>
                         <Mutation
                           mutation={DELETE_CLIENT_MUTATION}

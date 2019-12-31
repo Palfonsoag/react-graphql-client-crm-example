@@ -1,6 +1,7 @@
 import React from "react";
 import { Query } from "react-apollo";
 import { GET_CLIENT_QUERY } from "../../queries";
+import Loader from "../common/Loader";
 
 const ClientInfo = ({ id }) => {
   return (
@@ -8,7 +9,7 @@ const ClientInfo = ({ id }) => {
       <h2 className="text-center mb-3">Client Resume</h2>
       <Query query={GET_CLIENT_QUERY} variables={{ id }} pollInterval={1000}>
         {({ loading, error, data, startPolling, stopPolling }) => {
-          if (loading) return "Loading...";
+          if (loading) return <Loader />;
           if (error) return `Error ${error.message}`;
 
           //console.log(data.getClient);

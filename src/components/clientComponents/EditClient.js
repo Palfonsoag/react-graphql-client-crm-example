@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { GET_CLIENT_QUERY } from "../../queries";
 import EditClientForm from "./EditClientForm";
+import Loader from "../common/Loader";
 
 export default class EditClient extends Component {
   render() {
@@ -12,7 +13,7 @@ export default class EditClient extends Component {
         <div className="row justify-content-center">
           <Query query={GET_CLIENT_QUERY} variables={{ id }}>
             {({ loading, error, data, refetch }) => {
-              if (loading) return "Loading...";
+              if (loading) return <Loader />;
               if (error) return `Error! ${error.message}`;
               return (
                 <EditClientForm client={data.getClient} refetch={refetch} />

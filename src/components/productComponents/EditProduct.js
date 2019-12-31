@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { GET_PRODUCT_QUERY } from "../../queries";
 import EditProductForm from "./EditProductForm";
+import Loader from "../common/Loader";
 
 class EditProduct extends Component {
   state = {};
@@ -14,7 +15,7 @@ class EditProduct extends Component {
         <div className="row justify-content-center">
           <Query query={GET_PRODUCT_QUERY} variables={{ id }}>
             {({ loading, error, data, refetch }) => {
-              if (loading) return "Loading...";
+              if (loading) return <Loader />;
               if (error) return `Error ${error.message}`;
 
               return (
