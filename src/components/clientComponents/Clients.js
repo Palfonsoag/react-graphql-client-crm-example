@@ -67,6 +67,12 @@ class Clients extends Component {
                         {client.name} {client.lastName} - {client.company}
                       </div>
                       <div className="col-md-4 d-flex justify-content-end">
+                      <Link
+                          to={`/order/new/${client.id}`}
+                          className="btn btn-warning d-block d-md-inline-block mr-2"
+                        >
+                         &#43; New Order
+                        </Link>
                         <Mutation
                           mutation={DELETE_CLIENT_MUTATION}
                           onCompleted={data => {
