@@ -3,6 +3,7 @@ import { Query } from "react-apollo";
 import { GET_PRODUCTS_QUERY } from "../../queries";
 import ClientInfo from "./ClientInfo";
 import Loader from "../common/Loader";
+import OrderContent from "./OrderContent";
 
 class NewOrder extends Component {
   state = {};
@@ -20,8 +21,10 @@ class NewOrder extends Component {
               {({ loading, error, data }) => {
                 if (loading) return <Loader />;
                 if (error) return `Error ${error.message}`;
-                console.log(data);
-                return <Loader />;
+                console.log(data.getProducts);
+                return (
+                  <OrderContent products={data.getProducts} clientId={id} />
+                );
               }}
             </Query>
           </div>
