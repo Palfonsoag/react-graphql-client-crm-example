@@ -21,7 +21,7 @@ class NewOrder extends Component {
               {({ loading, error, data }) => {
                 if (loading) return <Loader />;
                 if (error) return `Error ${error.message}`;
-                console.log(data.getProducts);
+                //console.log(data.getProducts);
                 return (
                   <OrderContent products={data.getProducts} clientId={id} />
                 );
