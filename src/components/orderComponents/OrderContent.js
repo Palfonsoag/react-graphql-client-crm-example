@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Select from "react-select";
 import Animated from "react-select/animated";
 import OrderResume from "./OrderResume";
+import GenerateOrder from "./GenerateOrder";
 
 class OrderContent extends Component {
   state = { products: [], total: 0 };
@@ -67,6 +68,10 @@ class OrderContent extends Component {
           Total:{" "}
           <span className="font-weight-normal">$ {this.state.total}</span>
         </p>
+        <GenerateOrder
+          products={this.state.products}
+          total={this.state.total}
+        />
       </React.Fragment>
     );
   }
