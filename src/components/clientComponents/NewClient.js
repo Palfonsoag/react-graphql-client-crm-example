@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NEW_CLIENT_MUTATION } from "../mutations";
+import { NEW_CLIENT_MUTATION } from "../../mutations";
 import { Mutation } from "react-apollo";
 export default class NewClient extends Component {
   state = {
@@ -49,7 +49,7 @@ export default class NewClient extends Component {
         <div className="row justify-content-center">
           <Mutation
             mutation={NEW_CLIENT_MUTATION}
-            onCompleted={() => this.props.history.push("/")}
+            onCompleted={() => this.props.history.push("/client")}
           >
             {createClient => (
               <form
