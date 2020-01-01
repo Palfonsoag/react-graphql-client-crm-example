@@ -8,27 +8,40 @@ class OrderContent extends Component {
 
   selectProducts = products => {
     //console.log("aaaaaaaaa", products);
-    this.setState({ products });
+    this.setState({ products }, () => this.updateTotal());
   };
 
-  updateVolume = (volume, index) => {
+  updateTotal = () => {
     let newTotal = 0;
 
     const products = this.state.products;
-    if (products.length === 0) {
+
+    if (!products || products.length === 0) {
       this.setState({ total: newTotal });
 
       return;
     }
+
+    products.map(product => {
+      return (newTotal += product.volume
+        ? product.volume * Number(product.price)
+        : 0);
+    });
+
+    this.setState({ total: newTotal });
+  };
+
+  updateVolume = (volume, index) => {
+    const products = this.state.products;
+
     products[index].volume = Number(volume);
-    products.map(
-      product => (newTotal += product.volume * Number(product.price))
-    );
-    this.setState({ products, total: newTotal });
+
+    this.setState({ products }, () => this.updateTotal());
   };
 
   deleteProduct = id => {
-    console.log(id);
+    const products = this.state.products.filter(product => product.id !== id);
+    this.setState({ products }, () => this.updateTotal());
   };
   render() {
     const { products } = this.props;
@@ -43,6 +56,7 @@ class OrderContent extends Component {
           placeholder={"Select Products"}
           getOptionLabel={options => options.name}
           getOptionValue={options => options.id}
+          value={this.state.products}
         />
         <OrderResume
           products={this.state.products}
