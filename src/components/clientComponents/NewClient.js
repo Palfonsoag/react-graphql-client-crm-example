@@ -35,13 +35,13 @@ export default class NewClient extends Component {
   };
 
   render() {
-    const { error } = this.state;
+    const { error, name, lastName, company, age } = this.state;
     return (
       <React.Fragment>
         <h2 className="text-center">New Client</h2>
         {error ? (
           <p className="alert alert-danger p-3 text-center">
-            All fields are required
+            All fields are required And the client must be at least 18 years old
           </p>
         ) : (
           <React.Fragment />
@@ -71,6 +71,7 @@ export default class NewClient extends Component {
                     company === "" ||
                     company === "" ||
                     age === "" ||
+                    age < 18 ||
                     clientType === ""
                   ) {
                     this.setState({ error: true });
@@ -98,6 +99,7 @@ export default class NewClient extends Component {
                       onChange={text =>
                         this.setState({ name: text.target.value })
                       }
+                      value={name}
                     />
                   </div>
                   <div className="form-group col-md-6">
@@ -109,6 +111,7 @@ export default class NewClient extends Component {
                       onChange={text =>
                         this.setState({ lastName: text.target.value })
                       }
+                      value={lastName}
                     />
                   </div>
                 </div>
@@ -122,6 +125,7 @@ export default class NewClient extends Component {
                       onChange={text =>
                         this.setState({ company: text.target.value })
                       }
+                      value={company}
                     />
                   </div>
                 </div>
@@ -162,12 +166,17 @@ export default class NewClient extends Component {
                   <div className="form-group col-md-6">
                     <label>Age:</label>
                     <input
-                      type="text"
+                      type="number"
+                      min="0"
                       className="form-control"
                       placeholder="Age"
-                      onChange={text =>
-                        this.setState({ age: text.target.value })
-                      }
+                      value={age}
+                      onChange={text => {
+                        if (text.target.value < 0) {
+                          text.target.value = 0;
+                        }
+                        this.setState({ age: text.target.value });
+                      }}
                     />
                   </div>
                   <div className="form-group col-md-6">
