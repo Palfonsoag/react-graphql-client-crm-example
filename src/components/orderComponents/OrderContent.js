@@ -3,6 +3,7 @@ import Select from "react-select";
 import Animated from "react-select/animated";
 import OrderResume from "./OrderResume";
 import GenerateOrder from "./GenerateOrder";
+import ErrorAlert from "../common/ErrorAlert";
 
 class OrderContent extends Component {
   state = { products: [], total: 0 };
@@ -46,9 +47,16 @@ class OrderContent extends Component {
   };
   render() {
     const { products, clientId } = this.props;
+    const message =
+      this.state.total < 0 ? (
+        <ErrorAlert message={"you cannot set negative volume"} />
+      ) : (
+        <React.Fragment />
+      );
     return (
       <React.Fragment>
         <h2 className="text-center mb-5">Select Articles</h2>
+        {message}
         <Select
           onChange={this.selectProducts}
           options={products}

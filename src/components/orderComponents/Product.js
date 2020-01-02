@@ -12,9 +12,15 @@ class Product extends Component {
           <td>{product.stock}</td>
           <td>
             <input
+              min="0"
               type="number"
               className="form-control"
-              onChange={e => updateVolume(e.target.value, index)}
+              onChange={e => {
+                if (e.target.value > product.stock) {
+                  e.target.value = 0;
+                }
+                updateVolume(e.target.value, index);
+              }}
             />
           </td>
           <td>

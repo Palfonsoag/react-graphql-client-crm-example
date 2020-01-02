@@ -4,7 +4,7 @@ import { GENERATE_ORDER_MUTATION } from "../../mutations";
 import { withRouter } from "react-router-dom";
 
 const validateOrder = (products, total) => {
-  let invalid = !products || total === 0;
+  let invalid = !products || total <= 0;
 
   return invalid;
 };
