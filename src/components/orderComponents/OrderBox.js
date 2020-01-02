@@ -5,15 +5,28 @@ import Loader from "../common/Loader";
 import ProductOrderResume from "./ProductOrderResume";
 
 const OrderBox = props => {
-  const { order } = props;
+  const { order, clientId } = props;
   const date = new Date(Number(order.orderDate));
+  console.log(props);
   return (
     <div className="col-md-4">
       <div className={`card mb-3`}>
         <div className="card-body">
           <p className="card-text font-weight-bold ">
             State:
-            <select className="form-control my-3" value={order.state}>
+            <select
+              className="form-control my-3"
+              value={order.state}
+              onChange={e => {
+                const input = {
+                  ...order,
+                  client: clientId,
+                  state: e.target.value
+                };
+
+                console.log(input);
+              }}
+            >
               <option value="PENDING">PENDING</option>
               <option value="COMPLETED">COMPLETED</option>
               <option value="CANCELED">CANCELED</option>
