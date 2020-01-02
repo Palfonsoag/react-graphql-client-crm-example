@@ -25,6 +25,11 @@ const OrderBox = props => {
             <Mutation mutation={UPDATE_ORDER_STATE_MUTATION}>
               {updateState => (
                 <select
+                  disabled={
+                    order.state === "COMPLETED" || order.state === "CANCELED"
+                      ? true
+                      : false
+                  }
                   className="form-control my-3"
                   value={order.state}
                   onChange={e => {
@@ -33,8 +38,11 @@ const OrderBox = props => {
                       client: clientId,
                       state: e.target.value
                     };
-
-                    updateState({ variables: { input } });
+                    if (
+                      window.confirm("Do you want to change the order state?")
+                    ) {
+                      updateState({ variables: { input } });
+                    }
                   }}
                 >
                   <option value="PENDING">PENDING</option>
