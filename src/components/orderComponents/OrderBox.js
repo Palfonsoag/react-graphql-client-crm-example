@@ -8,9 +8,17 @@ import ProductOrderResume from "./ProductOrderResume";
 const OrderBox = props => {
   const { order, clientId } = props;
   const date = new Date(Number(order.orderDate));
+
+  let dynamicClass =
+    order.state === "PENDING"
+      ? "border-warning"
+      : order.state === "CANCELED"
+      ? "border-danger"
+      : "border-success";
+
   return (
     <div className="col-md-4">
-      <div className={`card mb-3`}>
+      <div className={`card mb-3 ${dynamicClass}`}>
         <div className="card-body">
           <p className="card-text font-weight-bold ">
             State:{" "}
