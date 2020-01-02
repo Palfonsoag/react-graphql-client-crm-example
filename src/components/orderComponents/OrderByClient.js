@@ -13,7 +13,7 @@ const OrderByClient = props => {
         <Query
           query={GET_ORDERS_BY_CLIENT}
           variables={{ client: clientId }}
-          pollInterval={1000}
+          pollInterval={500}
         >
           {({ loading, error, data, startPolling, stopPolling }) => {
             if (loading) return <Loader />;
