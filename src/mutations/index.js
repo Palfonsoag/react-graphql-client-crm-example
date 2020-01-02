@@ -58,3 +58,11 @@ export const UPDATE_PRODUCT_MUTATION = gql`
     }
   }
 `;
+
+export const GENERATE_ORDER_MUTATION = gql`
+  mutation createOrder($input: OrderInput) {
+    createOrder(input: $input) {
+      id
+    }
+  }
+`;

@@ -45,7 +45,7 @@ class OrderContent extends Component {
     this.setState({ products }, () => this.updateTotal());
   };
   render() {
-    const { products } = this.props;
+    const { products, clientId } = this.props;
     return (
       <React.Fragment>
         <h2 className="text-center mb-5">Select Articles</h2>
@@ -71,6 +71,7 @@ class OrderContent extends Component {
         <GenerateOrder
           products={this.state.products}
           total={this.state.total}
+          clientId={clientId}
         />
       </React.Fragment>
     );
