@@ -17,8 +17,8 @@ class NewOrder extends Component {
             <ClientInfo id={id} />
           </div>
           <div className="col-md-9">
-            <Query query={GET_PRODUCTS_QUERY}>
-              {({ loading, error, data }) => {
+            <Query query={GET_PRODUCTS_QUERY} pollInterval={1000}>
+              {({ loading, error, data, startPolling, stopPolling }) => {
                 if (loading) return <Loader />;
                 if (error) return `Error ${error.message}`;
                 //console.log(data.getProducts);
