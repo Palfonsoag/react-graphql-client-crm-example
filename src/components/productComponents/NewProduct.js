@@ -13,6 +13,12 @@ class NewProduct extends Component {
 
   updateState = e => {
     const { name, value } = e.target;
+    if ((name === "price" || name === "stock") && value < 0) {
+      this.setState({
+        [name]: 0
+      });
+      return;
+    }
     this.setState({
       [name]: value
     });
@@ -63,6 +69,7 @@ class NewProduct extends Component {
                       className="form-control"
                       placeholder="Product's name"
                       onChange={this.updateState}
+                      value={productName}
                     />
                   </div>
                   <div className="form-group">
@@ -73,10 +80,12 @@ class NewProduct extends Component {
                       </div>
                       <input
                         type="number"
+                        min="0"
                         name="price"
                         className="form-control"
                         placeholder="Product's Price"
                         onChange={this.updateState}
+                        value={price}
                       />
                     </div>
                   </div>
@@ -84,10 +93,12 @@ class NewProduct extends Component {
                     <label>Stock:</label>
                     <input
                       type="number"
+                      min="0"
                       name="stock"
                       className="form-control"
                       placeholder="stock"
                       onChange={this.updateState}
+                      value={stock}
                     />
                   </div>
                   <button
