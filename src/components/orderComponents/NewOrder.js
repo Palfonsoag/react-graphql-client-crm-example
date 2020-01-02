@@ -17,7 +17,11 @@ class NewOrder extends Component {
             <ClientInfo id={id} />
           </div>
           <div className="col-md-9">
-            <Query query={GET_PRODUCTS_QUERY} pollInterval={1000}>
+            <Query
+              query={GET_PRODUCTS_QUERY}
+              pollInterval={1000}
+              variables={{ stock: true }}
+            >
               {({ loading, error, data, startPolling, stopPolling }) => {
                 if (loading) return <Loader />;
                 if (error) return `Error ${error.message}`;
