@@ -6,8 +6,8 @@ import Loader from "../common/Loader";
 
 const ClientPanel = () => {
   return (
-    <Query query={TOP_TEN_BUYERS}>
-      {({ loading, error, data }) => {
+    <Query query={TOP_TEN_BUYERS} pollInterval={5000}>
+      {({ loading, error, data, startPolling, stopPolling }) => {
         if (loading) return <Loader />;
         if (error) return `Error ${error.message}`;
         const topClientGraphic = [];
@@ -25,7 +25,7 @@ const ClientPanel = () => {
 
         return (
           <BarChart
-            width={900}
+            width={1100}
             height={400}
             data={topClientGraphic}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
