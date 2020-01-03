@@ -64,3 +64,15 @@ export const GET_ORDERS_BY_CLIENT = gql`
     }
   }
 `;
+
+export const TOP_TEN_BUYERS = gql`
+  query topClients {
+    topClients {
+      total
+      client {
+        name
+        lastName
+      }
+    }
+  }
+`;
