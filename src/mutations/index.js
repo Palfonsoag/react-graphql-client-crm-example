@@ -72,3 +72,9 @@ export const UPDATE_ORDER_STATE_MUTATION = gql`
     updateOrderState(input: $input)
   }
 `;
+
+export const REGISTER_NEW_USER_MUTATION = gql`
+  mutation createUser($input: UserInput) {
+    createUser(input: $input)
+  }
+`;

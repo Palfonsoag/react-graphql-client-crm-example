@@ -14,6 +14,7 @@ import NewOrder from "./components/orderComponents/NewOrder";
 import OrderByClient from "./components/orderComponents/OrderByClient";
 import Panel from "./components/panel/Panel";
 import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -35,6 +36,7 @@ function App() {
           <div className="container">
             <Switch>
               <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
               <Route exact path="/client" component={Clients} />
               <Route exact path="/client/edit/:id" component={EditClient} />
               <Route exact path="/client/new" component={NewClient} />
