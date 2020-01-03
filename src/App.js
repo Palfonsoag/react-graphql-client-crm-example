@@ -12,7 +12,7 @@ import Products from "./components/productComponents/Products";
 import EditProduct from "./components/productComponents/EditProduct";
 import NewOrder from "./components/orderComponents/NewOrder";
 import OrderByClient from "./components/orderComponents/OrderByClient";
-
+import Panel from "./components/panel/Panel";
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache({
@@ -41,6 +41,7 @@ function App() {
               <Route exact path="/product/edit/:id" component={EditProduct} />
               <Route exact path="/order/new/:id" component={NewOrder} />
               <Route exact path="/order/:id" component={OrderByClient} />
+              <Route exact path="/panel" component={Panel} />
             </Switch>
           </div>
         </React.Fragment>
