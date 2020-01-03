@@ -19,7 +19,6 @@ class Register extends Component {
 
     createUser({ variables: { input } })
       .then(data => {
-        console.log(data);
         this.setState({ ...initialState });
         this.props.history.push("/login");
       })
