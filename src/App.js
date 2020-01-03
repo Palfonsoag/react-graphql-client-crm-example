@@ -32,7 +32,7 @@ function App() {
           <Header />
           <div className="container">
             <Switch>
-              <Route exact path="/" component={Clients} />
+              <Route exact path="/" component={Panel} />
               <Route exact path="/client" component={Clients} />
               <Route exact path="/client/edit/:id" component={EditClient} />
               <Route exact path="/client/new" component={NewClient} />
