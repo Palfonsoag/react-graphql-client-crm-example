@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import Header from "./components/common/Header";
 import Clients from "./components/clientComponents/Clients";
 import EditClient from "./components/clientComponents/EditClient";
@@ -16,11 +21,19 @@ import Session from "./components/Session";
 
 const App = ({ refetch, session }) => {
   console.log(session);
+
+  const message = session.getLoggedUser ? (
+    `Welcome: ${session.getLoggedUser.user}`
+  ) : (
+    <Redirect to="/login" />
+  );
   return (
     <Router>
       <React.Fragment>
         <Header />
+
         <div className="container">
+          <p className="text-right">{message}</p>
           <Switch>
             <Route exact path="/register" component={Register} />
             <Route
