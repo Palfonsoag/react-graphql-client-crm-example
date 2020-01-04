@@ -76,3 +76,11 @@ export const TOP_TEN_BUYERS = gql`
     }
   }
 `;
+
+export const GET_CURRENT_USER_QUERY = gql`
+  query getLoggedUser {
+    getLoggedUser {
+      user
+    }
+  }
+`;
