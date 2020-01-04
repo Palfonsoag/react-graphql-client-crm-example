@@ -11,7 +11,7 @@ const ClientPanel = () => {
         if (loading) return <Loader />;
         if (error) return `Error ${error.message}`;
         const topClientGraphic = [];
-
+        console.log(data);
         data.topClients.map((order, index) => {
           topClientGraphic[index] = {
             name:

@@ -47,11 +47,14 @@ class Clients extends Component {
     ) : (
       <React.Fragment />
     );
+
+    const { rol, id } = this.props.session.getLoggedUser;
+    const sellerId = rol === "SELLER" ? id : "";
     return (
       <Query
         query={GET_CLIENTS_QUERY}
         pollInterval={1000}
-        variables={{ limit, offset: pager.offset }}
+        variables={{ limit, offset: pager.offset, seller: sellerId }}
       >
         {({ loading, error, data, startPolling, stopPolling }) => {
           if (loading) return <Loader />;

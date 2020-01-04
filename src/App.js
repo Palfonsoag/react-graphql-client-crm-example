@@ -41,7 +41,11 @@ const App = ({ refetch, session }) => {
               path="/login"
               render={() => <Login refetch={refetch} />}
             />
-            <Route exact path="/client" component={Clients} />
+            <Route
+              exact
+              path="/client"
+              render={() => <Clients session={session} />}
+            />
             <Route exact path="/client/edit/:id" component={EditClient} />
             <Route
               exact
