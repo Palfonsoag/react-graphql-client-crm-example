@@ -1,8 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const Header = () => (
-  <nav className="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between d-flex mb-4">
-    <div className="container">
+import CloseSession from "./CloseSession";
+import RegisterButton from "./RegisterButton";
+
+const Header = ({ session }) => {
+  const navBar = session.getLoggedUser ? (
+    <NavigationAuth rol={session.getLoggedUser.rol} />
+  ) : (
+    <NavigationNonAuth />
+  );
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between d-flex mb-4">
+      <div className="container">{navBar}</div>
+    </nav>
+  );
+};
+
+const NavigationNonAuth = () => (
+  <h3 className="navbar-brand text-light font-weight-bold">CRM</h3>
+);
+
+const NavigationAuth = ({ rol }) => {
+  return (
+    <React.Fragment>
       <Link to="/client" className="navbar-brand text-light font-weight-bold">
         CRM
       </Link>
@@ -55,10 +75,18 @@ const Header = () => (
               </Link>
             </div>
           </li>
+          <Link
+            to="/panel"
+            className="btn bnt-block btn-info ml-md-2 mt-2 mt-md-0"
+          >
+            Panel
+          </Link>
+          {rol === "ADMIN" ? <RegisterButton /> : <React.Fragment />}
+          <CloseSession />
         </ul>
       </div>
-    </div>
-  </nav>
-);
+    </React.Fragment>
+  );
+};
 
 export default Header;

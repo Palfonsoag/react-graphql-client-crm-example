@@ -47,11 +47,14 @@ class Clients extends Component {
     ) : (
       <React.Fragment />
     );
+
+    const { rol, id } = this.props.session.getLoggedUser;
+    const sellerId = rol === "SELLER" ? id : "";
     return (
       <Query
         query={GET_CLIENTS_QUERY}
         pollInterval={1000}
-        variables={{ limit, offset: pager.offset }}
+        variables={{ limit, offset: pager.offset, seller: sellerId }}
       >
         {({ loading, error, data, startPolling, stopPolling }) => {
           if (loading) return <Loader />;
@@ -64,15 +67,21 @@ class Clients extends Component {
                 {data.getClients.map(client => (
                   <li key={client.id} className="list-group-item">
                     <div className="row justify-content-between align-items-center">
-                      <div className="col-md-8 d-flex justify-content-between align-items-center">
+                      <div className="col-md-6 col-xs-12 d-flex justify-content-between align-items-center">
                         {client.name} {client.lastName} - {client.company}
                       </div>
-                      <div className="col-md-4 d-flex justify-content-end">
+                      <div className="col-md-6 d-flex col-xs-12 justify-content-end">
                         <Link
                           to={`/order/new/${client.id}`}
                           className="btn btn-warning d-block d-md-inline-block mr-2"
                         >
                           &#43; New Order
+                        </Link>
+                        <Link
+                          to={`/order/${client.id}`}
+                          className="btn btn-primary d-block d-md-inline-block mr-2"
+                        >
+                          See Order
                         </Link>
                         <Mutation
                           mutation={DELETE_CLIENT_MUTATION}

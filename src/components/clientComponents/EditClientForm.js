@@ -149,10 +149,14 @@ class EditClientForm extends Component {
               <div className="form-group col-md-6">
                 <label>Age</label>
                 <input
-                  type="text"
+                  type="number"
+                  min="0"
                   className="form-control"
                   defaultValue={age}
                   onChange={e => {
+                    if (e.target.value < 0) {
+                      e.target.value = 0;
+                    }
                     this.setState({
                       client: { ...this.state.client, age: e.target.value }
                     });

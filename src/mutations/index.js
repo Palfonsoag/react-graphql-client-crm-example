@@ -58,3 +58,31 @@ export const UPDATE_PRODUCT_MUTATION = gql`
     }
   }
 `;
+
+export const GENERATE_ORDER_MUTATION = gql`
+  mutation createOrder($input: OrderInput) {
+    createOrder(input: $input) {
+      id
+    }
+  }
+`;
+
+export const UPDATE_ORDER_STATE_MUTATION = gql`
+  mutation updateOrderState($input: OrderInput) {
+    updateOrderState(input: $input)
+  }
+`;
+
+export const REGISTER_NEW_USER_MUTATION = gql`
+  mutation createUser($input: UserInput) {
+    createUser(input: $input)
+  }
+`;
+
+export const AUTHENTICATE_USER_MUTATION = gql`
+  mutation userAuthentication($user: String!, $password: String!) {
+    userAuthentication(user: $user, password: $password) {
+      token
+    }
+  }
+`;

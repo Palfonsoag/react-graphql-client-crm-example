@@ -17,6 +17,12 @@ class EditProductForm extends Component {
 
   updateState = e => {
     const { name, value } = e.target;
+    if ((name === "price" || name === "stock") && value < 0) {
+      this.setState({
+        [name]: 0
+      });
+      return;
+    }
     this.setState({
       [name]: value
     });
@@ -90,6 +96,7 @@ class EditProductForm extends Component {
                   <input
                     onChange={this.updateState}
                     type="number"
+                    min="0"
                     name="price"
                     className="form-control"
                     placeholder="Product's Price"
@@ -102,6 +109,7 @@ class EditProductForm extends Component {
                 <input
                   onChange={this.updateState}
                   type="number"
+                  min="0"
                   name="stock"
                   className="form-control"
                   placeholder="stock"
