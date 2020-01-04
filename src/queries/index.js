@@ -87,3 +87,14 @@ export const GET_CURRENT_USER_QUERY = gql`
     }
   }
 `;
+
+export const GET_TOP_SELLER_QUERY = gql`
+  query topSellers {
+    topSellers {
+      total
+      seller {
+        name
+      }
+    }
+  }
+`;

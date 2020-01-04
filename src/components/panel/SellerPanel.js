@@ -1,26 +1,23 @@
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 import { Query } from "react-apollo";
-import { TOP_TEN_BUYERS } from "../../queries";
+import { GET_TOP_SELLER_QUERY } from "../../queries";
 import Loader from "../common/Loader";
 
-const ClientPanel = () => {
+const SellerPanel = () => {
   return (
-    <Query query={TOP_TEN_BUYERS} pollInterval={5000}>
+    <Query query={GET_TOP_SELLER_QUERY} pollInterval={5000}>
       {({ loading, error, data, startPolling, stopPolling }) => {
         if (loading) return <Loader />;
         if (error) return `Error ${error.message}`;
-        const topClientGraphic = [];
-        // console.log(data);
+        const topSellersGraphic = [];
+        console.log(data);
 
-        if (data && data.topClients && data.topClients.length > 0) {
-          data.topClients.map((order, index) => {
-            topClientGraphic[index] = {
-              name:
-                order.client[0].name +
-                " " +
-                order.client[0].lastName.substring(0, 1),
-              total: order.total
+        if (data && data.topSellers && data.topSellers.length > 0) {
+          data.topSellers.map((seller, index) => {
+            topSellersGraphic[index] = {
+              name: seller.seller[0].name,
+              total: seller.total
             };
             return "";
           });
@@ -28,22 +25,22 @@ const ClientPanel = () => {
             <BarChart
               width={1100}
               height={400}
-              data={topClientGraphic}
+              data={topSellersGraphic}
               margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="total" fill="#10a98b" />
+              <Bar dataKey="total" fill="#6148b9" />
             </BarChart>
           );
         } else {
-          return <h2 className="text-center my-5">There Are no buyers yet</h2>;
+          return <h2 className="text-center my-5">There Are no sales yet</h2>;
         }
       }}
     </Query>
   );
 };
 
-export default ClientPanel;
+export default SellerPanel;
