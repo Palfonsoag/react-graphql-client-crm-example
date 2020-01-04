@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import CloseSession from "./CloseSession";
+
 const Header = ({ session }) => {
   const navBar = session.getLoggedUser ? (
     <NavigationAuth />
@@ -72,6 +74,7 @@ const NavigationAuth = () => (
           </div>
         </li>
       </ul>
+      <CloseSession />
     </div>
   </React.Fragment>
 );

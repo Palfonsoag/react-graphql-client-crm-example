@@ -20,7 +20,7 @@ import Login from "./components/auth/Login";
 import Session from "./components/Session";
 
 const App = ({ refetch, session }) => {
-  console.log(session);
+  //console.log(session);
 
   const message = session.getLoggedUser ? (
     `Welcome: ${session.getLoggedUser.user}`
