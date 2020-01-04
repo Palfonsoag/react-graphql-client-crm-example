@@ -35,7 +35,11 @@ const App = ({ refetch, session }) => {
         <div className="container">
           <p className="text-right">{message}</p>
           <Switch>
-            <Route exact path="/register" component={Register} />
+            <Route
+              exact
+              path="/register"
+              render={() => <Register session={session} />}
+            />
             <Route
               exact
               path="/login"

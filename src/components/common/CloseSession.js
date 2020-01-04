@@ -17,7 +17,7 @@ const CloseSession = ({ history }) => {
         return (
           <button
             type="button"
-            className="nav-link btn bnt-block btn-light ml-md-2 mt-2 mt-md-0"
+            className="btn bnt-block btn-light ml-md-2 mt-2 mt-md-0"
             onClick={() => logOut(client, history)}
           >
             Log Out
