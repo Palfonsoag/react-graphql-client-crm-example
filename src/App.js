@@ -30,7 +30,7 @@ const App = ({ refetch, session }) => {
   return (
     <Router>
       <React.Fragment>
-        <Header />
+        <Header session={session} />
 
         <div className="container">
           <p className="text-right">{message}</p>
