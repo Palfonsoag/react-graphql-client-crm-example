@@ -20,10 +20,10 @@ import Login from "./components/auth/Login";
 import Session from "./components/Session";
 
 const App = ({ refetch, session }) => {
-  //console.log(session);
+  // console.log(session);
 
   const message = session.getLoggedUser ? (
-    `Welcome: ${session.getLoggedUser.user}`
+    `Welcome: ${session.getLoggedUser.name}`
   ) : (
     <Redirect to="/login" />
   );
@@ -43,7 +43,11 @@ const App = ({ refetch, session }) => {
             />
             <Route exact path="/client" component={Clients} />
             <Route exact path="/client/edit/:id" component={EditClient} />
-            <Route exact path="/client/new" component={NewClient} />
+            <Route
+              exact
+              path="/client/new"
+              render={() => <NewClient session={session} />}
+            />
             <Route exact path="/product" component={Products} />
             <Route exact path="/product/new" component={NewProduct} />
             <Route exact path="/product/edit/:id" component={EditProduct} />

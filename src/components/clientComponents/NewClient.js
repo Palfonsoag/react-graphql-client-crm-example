@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { NEW_CLIENT_MUTATION } from "../../mutations";
 import { Mutation } from "react-apollo";
-export default class NewClient extends Component {
+import { withRouter } from "react-router-dom";
+import { NEW_CLIENT_MUTATION } from "../../mutations";
+
+class NewClient extends Component {
   state = {
     name: "",
     lastName: "",
@@ -36,6 +38,8 @@ export default class NewClient extends Component {
 
   render() {
     const { error, name, lastName, company, age } = this.state;
+    //  console.log(this.props.session.getLoggedUser);
+    const idSeller = this.props.session.getLoggedUser.id;
     return (
       <React.Fragment>
         <h2 className="text-center">New Client</h2>
@@ -84,7 +88,8 @@ export default class NewClient extends Component {
                     company,
                     emails,
                     clientType,
-                    age: Number(this.state.age)
+                    age: Number(this.state.age),
+                    seller: idSeller
                   };
                   createClient({ variables: { input } });
                 }}
@@ -204,3 +209,5 @@ export default class NewClient extends Component {
     );
   }
 }
+
+export default withRouter(NewClient);
