@@ -78,3 +78,11 @@ export const REGISTER_NEW_USER_MUTATION = gql`
     createUser(input: $input)
   }
 `;
+
+export const AUTHENTICATE_USER_MUTATION = gql`
+  mutation userAuthentication($user: String!, $password: String!) {
+    userAuthentication(user: $user, password: $password) {
+      token
+    }
+  }
+`;
