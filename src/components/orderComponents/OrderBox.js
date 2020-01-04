@@ -4,6 +4,7 @@ import { GET_PRODUCT_QUERY } from "../../queries";
 import { UPDATE_ORDER_STATE_MUTATION } from "../../mutations";
 import Loader from "../common/Loader";
 import ProductOrderResume from "./ProductOrderResume";
+import "./order.css";
 
 const OrderBox = props => {
   const { order, clientId } = props;
@@ -11,7 +12,7 @@ const OrderBox = props => {
 
   let dynamicClass =
     order.state === "PENDING"
-      ? "border-warning"
+      ? "border-light"
       : order.state === "CANCELED"
       ? "border-danger"
       : "border-success";
@@ -63,12 +64,9 @@ const OrderBox = props => {
               {date.toLocaleString("en-US")}
             </span>
           </p>
-          <p className="card-text font-weight-bold">
-            Total:
-            <span className="font-weight-normal"> $ {order.total}</span>
-          </p>
-
-          <h3 className="card-text text-center mb-3">Articles of the Order</h3>
+          <h3 className="card-text text-center highlight-text mb-3">
+            Articles of the Order
+          </h3>
           {order.order.map((product, index) => {
             return (
               <Query
@@ -89,6 +87,10 @@ const OrderBox = props => {
               </Query>
             );
           })}
+          <div className="d-flex align-items-center">
+            <p className="card-text highlight-text bg-yellow mr-1">Total: </p>
+            <p className="font-weight-normal inc-text"> $ {order.total}</p>
+          </div>
         </div>
       </div>
     </div>
