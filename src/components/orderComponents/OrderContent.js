@@ -46,7 +46,7 @@ class OrderContent extends Component {
     this.setState({ products }, () => this.updateTotal());
   };
   render() {
-    const { products, clientId } = this.props;
+    const { products, clientId, sellerId } = this.props;
     const message =
       this.state.total < 0 ? (
         <ErrorAlert message={"you cannot set negative volume"} />
@@ -80,6 +80,7 @@ class OrderContent extends Component {
           products={this.state.products}
           total={this.state.total}
           clientId={clientId}
+          sellerId={sellerId}
         />
       </React.Fragment>
     );

@@ -9,7 +9,7 @@ const validateOrder = (products, total) => {
   return invalid;
 };
 
-const GenerateOrder = ({ products, total, clientId, history }) => {
+const GenerateOrder = ({ products, total, clientId, history, sellerId }) => {
   return (
     <Mutation
       mutation={GENERATE_ORDER_MUTATION}
@@ -25,7 +25,8 @@ const GenerateOrder = ({ products, total, clientId, history }) => {
             const input = {
               order: productInput,
               total,
-              client: clientId
+              client: clientId,
+              seller: sellerId
             };
             newOrder({ variables: { input } });
           }}
